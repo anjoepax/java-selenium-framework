@@ -2,5 +2,7 @@ package org.seleniumframework.com.constants;
 
 public enum DriverType {
     CHROME,
-    FIREFOX
+    FIREFOX,
+    CHROME_REMOTE,
+    FIREFOX_REMOTE
 }

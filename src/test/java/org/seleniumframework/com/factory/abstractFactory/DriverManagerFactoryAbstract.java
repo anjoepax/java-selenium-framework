@@ -12,6 +12,12 @@ public class DriverManagerFactoryAbstract {
             case FIREFOX -> {
                 return new FirefoxDriverManagerAbstract();
             }
+            case CHROME_REMOTE -> {
+                return new ChromeRemoteDriverManagerAbstract();
+            }
+            case FIREFOX_REMOTE -> {
+                return new FirefoxRemoteDriverManagerAbstract();
+            }
             default -> throw new IllegalStateException("Unexpected value: " + driverType);
         }
     }
