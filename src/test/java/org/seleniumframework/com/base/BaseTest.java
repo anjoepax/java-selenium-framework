@@ -40,6 +40,10 @@ public class BaseTest {
         this.driver.set(driver);
     }
 
+    /**
+     * Getting the recent driver instance
+     * @return
+     */
     protected WebDriver getDriver(){
         return this.driver.get();
     }
