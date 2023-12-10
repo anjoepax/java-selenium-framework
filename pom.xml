@@ -20,6 +20,9 @@
         <jsoup.version>1.16.2</jsoup.version>
         <javafaker.version>1.0.2</javafaker.version>
         <ashot.version>1.5.4</ashot.version>
+        <allure.version>2.25.0</allure.version>
+        <aspectj.version>1.9.20.1</aspectj.version>
+        <assertj.version>3.24.2</assertj.version>
     </properties>
 
     <build>
@@ -31,9 +34,27 @@
                 <configuration>
                     <parallel>methods</parallel>
                     <threadCount>6</threadCount>
-                    <!--                    <suiteXmlFiles>
-                                            <suiteXmlFile>testng.xml</suiteXmlFile>
-                                        </suiteXmlFiles>-->
+                    <!--<suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>-->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -97,6 +118,21 @@
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
             <version>${ashot.version}</version>
+        </dependency>
+
+        <!-- Allure Report -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+
+        <!-- AssertJ -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

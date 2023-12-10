@@ -5,14 +5,16 @@ import org.seleniumframework.com.pages.StorePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SearchTest extends BaseTest {
 
-    @Test
+    @Test(description = "Search with partial match test")
     public void searchWithPartialMatch(){
         String searchFor = "Blue";
         StorePage storePage = new StorePage(getDriver()).
                 load().
                 search(searchFor);
-        Assert.assertEquals(storePage.getTitle(), "Search results: “" + searchFor + "”");
+        assertThat(storePage.getTitle()).isEqualTo("Search results: “" + searchFor + "”");
     }
 }

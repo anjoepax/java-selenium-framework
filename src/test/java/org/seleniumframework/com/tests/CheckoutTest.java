@@ -9,14 +9,15 @@ import org.seleniumframework.com.objects.User;
 import org.seleniumframework.com.pages.CheckoutPage;
 import org.seleniumframework.com.utils.FakerUtils;
 import org.seleniumframework.com.utils.JacksonUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class CheckoutTest extends BaseTest {
 
-    @Test
+    @Test(description = "Guest checkout using direct bank transfer test")
     public void GuestCheckoutUsingDirectBankTransfer() throws IOException, InterruptedException {
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json", BillingAddress.class);
         CheckoutPage checkoutPage = new CheckoutPage(getDriver()).load();
@@ -29,10 +30,10 @@ public class CheckoutTest extends BaseTest {
         setBillingAddress(billingAddress).
                 selectDirectBankTransfer().
                 placeOrder();
-        Assert.assertEquals(checkoutPage.getNotice(), "Thank you. Your order has been received.");
+        assertThat(checkoutPage.getNotice()).isEqualTo("Thank you. Your order has been received.");
     }
 
-    @Test
+    @Test(description = "Login and checkout using direct bank transfer test")
     public void LoginAndCheckoutUsingDirectBankTransfer() throws IOException, InterruptedException {
         BillingAddress billingAddress = JacksonUtils.deserializeJson("myBillingAddress.json", BillingAddress.class);
         String username = "demouser" + new FakerUtils().generateRandomNumber();
@@ -53,6 +54,6 @@ public class CheckoutTest extends BaseTest {
         checkoutPage.setBillingAddress(billingAddress).
                 selectDirectBankTransfer().
                 placeOrder();
-        Assert.assertEquals(checkoutPage.getNotice(), "Thank you. Your order has been received.");
+        assertThat(checkoutPage.getNotice()).isEqualTo("Thank you. Your order has been received.");
     }
 }

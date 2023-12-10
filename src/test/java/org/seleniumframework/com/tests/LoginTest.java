@@ -7,12 +7,13 @@ import org.seleniumframework.com.objects.Product;
 import org.seleniumframework.com.objects.User;
 import org.seleniumframework.com.pages.CheckoutPage;
 import org.seleniumframework.com.utils.FakerUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(description = "Login during checkout test")
     public void loginDuringCheckout() throws Exception {
         String username = "demouser" + new FakerUtils().generateRandomNumber();
         User user = new User().
@@ -32,6 +33,6 @@ public class LoginTest extends BaseTest {
         checkoutPage.
                 clickHereToLoginLink().
                 login(user);
-        Assert.assertTrue(checkoutPage.getProductName().contains(product.getName()));
+        assertThat(checkoutPage.getProductName()).contains(product.getName());
     }
 }
