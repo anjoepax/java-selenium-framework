@@ -22,7 +22,7 @@ public class CartPage extends BasePage {
     }
 
     /**
-     * This sample comment
+     * This sample comment test
      * @return
      */
     public String getProductName(){
