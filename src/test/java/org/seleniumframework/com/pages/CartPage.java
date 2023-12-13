@@ -21,6 +21,10 @@ public class CartPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * This sample comment
+     * @return
+     */
     public String getProductName(){
         return wait.until(ExpectedConditions.visibilityOf(productName)).getText();
     }
