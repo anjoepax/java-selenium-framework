@@ -29,6 +29,10 @@ public class CartPage extends BasePage {
         return wait.until(ExpectedConditions.visibilityOf(productName)).getText();
     }
 
+    /***
+     * Testing only
+     * @return
+     */
     public CheckoutPage checkout(){
         wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn)).click();
         return new CheckoutPage(driver);
